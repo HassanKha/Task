@@ -12,7 +12,7 @@ import path from 'path';
 const app = express();
 const port =  3001;
 app.use(cors({
-        origin: 'https://demo-0zsz.onrender.com',
+        origin: 'https://taskcreativa-wrff.vercel.app/',
       credentials: true, //access-control-allow-credentials:true
       optionSuccessStatus: 200,
     }));
