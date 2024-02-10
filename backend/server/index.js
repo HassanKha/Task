@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import cors from "cors";
 import fs from "fs";
+import dotenv from "dotenv";
 import csvParser from "csv-parser";
 import * as statistics from "simple-statistics";
 import lo from "lodash";
@@ -9,7 +10,13 @@ import { ChartJSNodeCanvas } from "chartjs-node-canvas";
 import path from 'path';
 
 const app = express();
-app.use(cors());
+const port =  3001;
+app.use(cors({
+        origin: 'https://demo-0zsz.onrender.com',
+      credentials: true, //access-control-allow-credentials:true
+      optionSuccessStatus: 200,
+    }));
+dotenv.config();
 app.use(express.json());
 const _dirname = path.resolve();
 app.use(express.static(path.join(_dirname,'/client/my-project/dist')));
@@ -118,7 +125,7 @@ const Stats = {meanAge, medianAge,ageRange}
     res.status(500).json({ success: false, message: "Internal server error." });
   }
 });
-const port = 3001;
+
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}`);
 });
